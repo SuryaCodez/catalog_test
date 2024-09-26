@@ -2,10 +2,10 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include <json/json.h> // JSON library (needs to be installed)
-#include <cmath> // For base conversion
+#include <json/json.h> 
+#include <cmath> 
 
-// Function to decode a value from a given base
+
 int decodeValue(int base, const std::string& value) {
     int result = 0;
     int power = 1;
@@ -16,7 +16,6 @@ int decodeValue(int base, const std::string& value) {
     return result;
 }
 
-// Function to calculate Lagrange interpolation for constant term 'c'
 double findConstantTerm(const std::vector<int>& x, const std::vector<int>& y, int k) {
     double constantTerm = 0;
 
@@ -34,20 +33,19 @@ double findConstantTerm(const std::vector<int>& x, const std::vector<int>& y, in
 }
 
 int main() {
-    // Load the JSON input file
+
     std::ifstream file("input.json");
     Json::Value root;
     file >> root;
 
-    // Parse the number of roots and k (minimum number of roots required)
+
     int n = root["keys"]["n"].asInt();
     int k = root["keys"]["k"].asInt();
 
-    // Store the x and decoded y values
+
     std::vector<int> xValues;
     std::vector<int> yValues;
 
-    // Iterate through the JSON object and decode the values
     for (auto it = root.begin(); it != root.end(); ++it) {
         if (it.key().asString() != "keys") {
             int x = std::stoi(it.key().asString()); // Extract the key as x
